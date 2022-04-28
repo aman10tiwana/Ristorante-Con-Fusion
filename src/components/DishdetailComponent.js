@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
 
-  function RenderDish({dish}) {
+    function RenderDish({dish}) {
       return (
           <div className='col-12 col-md-5 m-1'>
               <Card>
@@ -14,9 +14,9 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
               </Card>
           </div>
       );
-  }
+    }
 
-  function RenderComments({comments}){
+    function RenderComments({comments}){
       return (
          <div className="col-12 col-md-5 m-1">
             <h4>Comments</h4>
@@ -50,6 +50,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
              <div></div>
           );
        }
-  }
+    }
 
 export default DishDetail;
