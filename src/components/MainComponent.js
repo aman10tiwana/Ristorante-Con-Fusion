@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
-import Contact from './ContactComponent'
+import Contact from './ContactComponent';
+import About from './AboutComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishes';
@@ -50,6 +51,12 @@ class Main extends Component {
       );
     };
 
+    const AboutPage = () => {
+      return(
+        <About leaders = {this.state.leaders} />
+      );
+    };
+
     return (
       <div>
         <Header />
@@ -58,7 +65,9 @@ class Main extends Component {
               <Route exact path="/menu" element={<MenuPage />} />
               <Route path='/menu/:dishId' element={<DishWithId/>} />
               <Route path="/contactus" element={<Contact/>} />
+              <Route path="/aboutus" element={<AboutPage/>} />
               <Route path="/*" element={<Navigate replace to="/home" />} />
+
         </Routes>
         <Footer />
       </div>
