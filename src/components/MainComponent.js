@@ -6,7 +6,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { Route, Routes, Navigate, useParams, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useParams} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
