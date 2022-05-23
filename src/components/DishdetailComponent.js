@@ -23,21 +23,23 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
     }
 
     function RenderComments({comments, addComment, dishId}){
+       const cmnts= comments.map(comment => {
+          return (
+             <li key={comment.id}>
+               <p>{comment.comment}</p>
+               <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+             </li>
+          );
+        })
         return (
            <div className="col-12 col-md-5 m-1">
               <h4>Comments</h4>
               <ul className="list-unstyled">
-              {comments.map((comment) => {
-                 return (
-                    <li key={comment.id}>
-                      <p>{comment.comment}</p>
-                      <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                    </li>
-                 );
-               })}
+              {cmnts}
                </ul>
-               <CommentForm dishId={dishId} addComment={addComment}/>
+              <CommentForm dishId={dishId} addComment={addComment}/>
            </div>
+
         );
     }
 
