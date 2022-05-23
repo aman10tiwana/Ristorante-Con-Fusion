@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardText, CardBody, CardTitle, Button, Modal, ModalBody, ModalHeader, Form, FormGroup, Label} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardText, CardBody, CardTitle, Button, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
@@ -22,24 +22,23 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
       );
     }
 
-    function RenderComments({comments, addComment, dishId}){
-       const cmnts= comments.map(comment => {
-          return (
-             <li key={comment.id}>
-               <p>{comment.comment}</p>
-               <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-             </li>
-          );
-        })
+    function RenderComments({comments, postComment, dishId}){
+      if (comments != null)
         return (
            <div className="col-12 col-md-5 m-1">
               <h4>Comments</h4>
               <ul className="list-unstyled">
-              {cmnts}
+                {comments.map(comment => {
+                   return (
+                      <li key={comment.id}>
+                        <p>{comment.comment}</p>
+                        <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                      </li>
+                   );
+                 })}
                </ul>
-              <CommentForm dishId={dishId} addComment={addComment}/>
+              <CommentForm dishId={dishId} postComment={postComment}/>
            </div>
-
         );
     }
 
@@ -63,7 +62,7 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
 
       handleSubmit(values) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         console.log('comment:', values);
       }
 
@@ -73,18 +72,21 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
             <Button outline onClick={this.toggleModal}>
               <span className="fa fa-pencil fa-lg" /> Submit Comment
             </Button>
-            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
               <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
               <ModalBody>
-              <Form onSubmit={this.handleSubmit}>
-                <FormGroup>
-                    <Label htmlFor="rating">Rating</Label>
+              <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                <Row className="form-group">
+                  <Label htmlFor="rating">Rating</Label>
+                  <Col md={12}>
                     <Control.select
-                      type="select"
                       model=".rating"
                       name="rating"
                       id="rating"
+                      validators={{
+                           required
+                       }}
                       className="form-control">
                            <option>1</option>
                            <option>2</option>
@@ -92,47 +94,63 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                            <option>4</option>
                            <option>5</option>
                     </Control.select>
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="author">Your Name</Label>
-                    <Control.text
-                  name="author"
-                  id="author"
-                  model=".author"
-                  placeholder="Your Name"
-                  className="form-control"
-                  validators={{
-                    required,
-                    minLength: minLength(3),
-                    maxLength: maxLength(15)
-                  }}
-                />
-                  <Errors
-                    className="text-danger"
-                    model= ".author"
-                    show="touched"
-                    messages={{
-                      required: 'Required',
-                      minLength: 'Must be greater than 2 characters',
-                      maxLength: 'Must be 15 characters or less'
-                    }}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label htmlfor="Comments">Comment</Label>
-                  <Control.textarea
-                  rows="6"
-                  name="comment"
-                  id="comment"
-                  model=".comment"
-                  className="form-control"
-                />
-                </FormGroup>
+                    <Errors
+                      className="text-danger"
+                      model=".author"
+                      show="touched"
+                      messages={{
+                          required: 'Required',
+                      }}
+                    />
+                    </Col>
+                  </Row>
+                  <Row className="form-group">
+                    <Label htmlFor="author" md={12}> Your Name </Label>
+                    <Col md={12}>
+                        <Control.text model=".author" id="author" name="author"
+                            placeholder="First Name"
+                            className="form-control"
+                            validators={{
+                                required, minLength: minLength(3), maxLength: maxLength(15)
+                            }}
+                        />
+                        <Errors
+                            className="text-danger"
+                            model=".author"
+                            show="touched"
+                            messages={{
+                                required: 'Required',
+                                minLength: 'Must be greater than 2 characters',
+                                maxLength: 'Must be 15 characters or less'
+                            }}
+                        />
+                    </Col>
+                </Row>
+                <Row className="form-group">
+                   <Label htmlFor="comment" md={12}>Comment</Label>
+                   <Col md={12}>
+                       <Control.textarea model=".comment" id="comment" name="comment"
+                           rows="6"
+                           className="form-control"
+                           validators={{
+                               required
+                           }}
+                       />
+                       <Errors
+                           className="text-danger"
+                           model=".author"
+                           show="touched"
+                           messages={{
+                               required: 'Required',
+                           }}
+                       />
+                   </Col>
+               </Row>
                 <Button type="submit" value="submit" color="primary">Submit</Button>
-              </Form>
+              </LocalForm>
               </ModalBody>
             </Modal>
-            </LocalForm>
+
           </div>
         );
       }
@@ -173,7 +191,7 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                 <div className="row">
                   <RenderDish dish={props.dish} />
                   <RenderComments comments={props.comments}
-                      addComment={props.addComment}
+                      postComment={props.postComment}
                       dishId={props.dish.id}
                       />
                 </div>
