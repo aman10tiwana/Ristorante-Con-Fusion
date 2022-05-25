@@ -31,7 +31,7 @@ class Header extends Component {
     this.toggleModal();
     alert("Username: " + this.username.value + " Password: " + this.password.value
       + " Remember: " + this.remember.checked);
-    event.preventDefault();        
+    event.preventDefault();
   }
 
   render() {
@@ -40,7 +40,7 @@ class Header extends Component {
         <nav className="navbar navbar-dark navbar-expand-md" >
           <Container>
             <NavbarToggler onClick={this.toggleNav} />
-            <NavbarBrand className="me-auto ps-2" href="/"><img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
+            <NavbarBrand className="me-auto ps-2" href="/"><img src='public/assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' /></NavbarBrand>
             <Collapse isOpen={this.state.isNavOpen} navbar>
                 <Nav navbar>
                 <NavItem>
