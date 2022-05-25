@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardText, CardBody, CardTitle, Button, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Row, Col} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardText, CardBody, CardTitle, Button, Modal, ModalBody, ModalHeader, Label, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 const required = (val) => val && val.length;
 const maxLength =(len) => (val) => !(val) || (val.length <= len);
 const minLength =(len) => (val) => (val) && (val.length >= len);
@@ -11,6 +12,10 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
     function RenderDish({dish}) {
       return (
           <div className="col-12 col-md-5 m-1">
+          <FadeTransform in
+            transformProps = {{
+              exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
               <Card>
                   <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
                   <CardBody>
@@ -18,6 +23,7 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                       <CardText> {dish.description} </CardText>
                   </CardBody>
               </Card>
+            </FadeTransform>
           </div>
       );
     }
@@ -28,14 +34,20 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
            <div className="col-12 col-md-5 m-1">
               <h4>Comments</h4>
               <ul className="list-unstyled">
+
                 {comments.map(comment => {
                    return (
+                    <Stagger in>
                       <li key={comment.id}>
+                      <Fade in>
                         <p>{comment.comment}</p>
                         <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                      </Fade>
                       </li>
+                    </Stagger>
                    );
                  })}
+
                </ul>
               <CommentForm dishId={dishId} postComment={postComment}/>
            </div>
@@ -80,14 +92,8 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                 <Row className="form-group">
                   <Label htmlFor="rating">Rating</Label>
                   <Col md={12}>
-                    <Control.select
-                      model=".rating"
-                      name="rating"
-                      id="rating"
-                      validators={{
-                           required
-                       }}
-                      className="form-control">
+                  {/* eslint-disable-next-line */}
+                    <Control.select model=".rating" name="rating" id="rating" validators={{required}} className="form-control">
                            <option>1</option>
                            <option>2</option>
                            <option>3</option>
@@ -107,13 +113,15 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                   <Row className="form-group">
                     <Label htmlFor="author" md={12}> Your Name </Label>
                     <Col md={12}>
-                        <Control.text model=".author" id="author" name="author"
+                    {/* eslint-disable-next-line */}
+                        < Control.text model=".author" id="author" name="author"
                             placeholder="First Name"
                             className="form-control"
                             validators={{
                                 required, minLength: minLength(3), maxLength: maxLength(15)
                             }}
                         />
+
                         <Errors
                             className="text-danger"
                             model=".author"
@@ -129,6 +137,7 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                 <Row className="form-group">
                    <Label htmlFor="comment" md={12}>Comment</Label>
                    <Col md={12}>
+                   {/* eslint-disable-next-line */}
                        <Control.textarea model=".comment" id="comment" name="comment"
                            rows="6"
                            className="form-control"

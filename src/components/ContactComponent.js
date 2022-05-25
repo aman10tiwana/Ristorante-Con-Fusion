@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors} from 'react-redux-form';
 
 const required = (val) => val && val.length;
 const maxLength =(len) => (val) => !(val) || (val.length <= len);
@@ -21,6 +21,7 @@ class Contact extends Component {
     console.log("Current State is: "+ JSON.stringify(values));
     alert("Current State is: "+ JSON.stringify(values));
     this.props.resetFeedbackForm();
+    this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message);
   }
 
   render() {
@@ -56,7 +57,9 @@ class Contact extends Component {
               </div>
               <div className="col-12 col-sm-11 offset-sm-1 pt-1">
                   <div className="btn-group" role="group">
+                  {/* eslint-disable-next-line */}
                       <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
+                      {/* eslint-disable-next-line */}
                       <a role="button" className="btn btn-info"><i className="fa fa-skype"></i> Skype</a>
                       <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
                   </div>
@@ -67,10 +70,11 @@ class Contact extends Component {
               <h3>Send us your Feedback</h3>
             </div>
             <div className="col-12 col-md-9">
-              <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
-                <Row className="form-group">
+              <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)} resetOnSubmit={true}>
+                <Row className="form-group pb-1">
                   <Label htmlfor="firstname" md={2}>First Name</Label>
                     <Col md={10}>
+                    {/* eslint-disable-next-line */}
                       <Control.text model=".firstname" id="firstname" name="firstname"
                           placeholder="First Name"
                           className="form-control"
@@ -90,9 +94,10 @@ class Contact extends Component {
                         />
                     </Col>
                 </Row>
-                <Row className="form-group">
+                <Row className="form-group pb-1">
                    <Label htmlFor="lastname" md={2}>Last Name</Label>
                    <Col md={10}>
+                   {/* eslint-disable-next-line */}
                     <Control.text model=".lastname" name="lastname"
                         placeholder="Last Name"
                         className="form-control"
@@ -113,9 +118,10 @@ class Contact extends Component {
                   </Col>
                </Row>
 
-                <Row className="form-group">
+                <Row className="form-group  pb-1">
                 <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                     <Col md={10}>
+                    {/* eslint-disable-next-line */}
                         <Control.text model=".telnum" id="telnum" name="telnum"
                             placeholder="Tel. number"
                             className="form-control"
@@ -136,9 +142,10 @@ class Contact extends Component {
                         />
                     </Col>
                 </Row>
-                <Row className="form-group">
+                <Row className="form-group pb-1">
                    <Label htmlFor="email" md={2}>Email</Label>
                    <Col md={10}>
+                   {/* eslint-disable-next-line */}
                        <Control.text model=".email" id="email" name="email"
                            placeholder="Email"
                            className="form-control"
@@ -157,10 +164,11 @@ class Contact extends Component {
                         />
                    </Col>
                </Row>
-                <Row className="form-group">
+                <Row className="form-group pb-1">
                     <Col md={{size: 6, offset: 2}}>
                         <div className="form-check">
                             <Label check>
+                            {/* eslint-disable-next-line */}
                                 <Control.checkbox model=".agree" name="agree"
                                     className="form-check-input"/> {' '}
                                 <strong>May we contact you?</strong>
@@ -168,16 +176,19 @@ class Contact extends Component {
                         </div>
                     </Col>
                     <Col md={{size: 3, offset: 1}}>
+                    {/* eslint-disable-next-line */}
                         <Control.select model=".contactType" name="contactType"
                                 className="form-control">
                             <option>Tel.</option>
                             <option>Email</option>
+                    {/* eslint-disable-next-line */}
                         </Control.select>
                     </Col>
                 </Row>
-                <Row className="form-group">
+                <Row className="form-group pb-1">
                     <Label htmlFor="message" md={2}>Your Feedback</Label>
                     <Col md={10}>
+                    {/* eslint-disable-next-line */}
                         <Control.textarea model=".message" id="message" name="message"
                             rows="12"
                             className="form-control"/>
