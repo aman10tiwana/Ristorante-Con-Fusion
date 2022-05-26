@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "@typescript-eslint/parser": "^5.22.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "bootstrap": "^5.1.3",
     "bootstrap-social": "^5.1.1",
     "cross-fetch": "^3.1.5",
@@ -22,8 +22,10 @@
     "react-popper": "^2.2.5",
     "react-redux": "^8.0.1",
     "react-redux-form": "^1.16.14",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.2",
+    "reactstrap": "^9.0.2",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
@@ -56,10 +58,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@typescript-eslint/parser": "^5.22.0",
-    "react-router-dom": "^6.3.0",
-    "reactstrap": "^9.0.2"
   }
 }
