@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-{
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-}
-||||||| cdfd959
-=======
 {
   "dishes": [
     {
@@ -223,48 +201,6 @@
       "comment": "It's your birthday, we're gonna party!",
       "author": "25 Cent",
       "date": "2011-12-02T17:57:28.556094Z"
-    },
-    {
-      "dishId": 1,
-      "date": "2022-05-23T21:20:54.699Z",
-      "id": 20
-    },
-    {
-      "dishId": 1,
-      "rating": "4",
-      "author": "Amninder Kaur",
-      "comment": "Test!",
-      "date": "2022-05-23T21:20:54.720Z",
-      "id": 21
-    },
-    {
-      "dishId": 2,
-      "date": "2022-05-23T21:37:40.001Z",
-      "id": 22
-    },
-    {
-      "dishId": 2,
-      "rating": "5",
-      "author": "Amninder Kaur",
-      "comment": "Time",
-      "date": "2022-05-23T21:37:40.002Z",
-      "id": 23
-    },
-    {
-      "dishId": 2,
-      "rating": "4",
-      "author": "Amninder KAur",
-      "comment": "Hello",
-      "date": "2022-05-23T21:44:56.272Z",
-      "id": 24
-    },
-    {
-      "dishId": 3,
-      "rating": "4",
-      "author": "Amninder KAur",
-      "comment": "Testing",
-      "date": "2022-05-25T14:52:36.843Z",
-      "id": 25
     }
   ],
   "promotions": [
@@ -327,29 +263,6 @@
       "message": "afadsfds",
       "date": "2017-12-04T09:41:49.890Z",
       "id": 1
-    },
-    {
-      "firstname": "Amninder",
-      "lastname": "Kaur",
-      "telnum": "4087018139",
-      "email": "amninderkaur1@yahoo.com",
-      "agree": true,
-      "contactType": "Email",
-      "message": "Test in progress......",
-      "date": "2022-05-24T20:02:18.487Z",
-      "id": 2
-    },
-    {
-      "firstname": "Manpreet",
-      "lastname": "Singh",
-      "telnum": "6095401750",
-      "email": "jasrawala@gmail.com",
-      "agree": false,
-      "contactType": "Email",
-      "message": "This is my website....",
-      "date": "2022-05-25T14:07:37.076Z",
-      "id": 3
     }
   ]
 }
->>>>>>> 07bf6283ffa20b39b9ba1a4543617d07bcc06d3d
