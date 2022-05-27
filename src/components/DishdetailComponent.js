@@ -115,7 +115,7 @@ const minLength =(len) => (val) => (val) && (val.length >= len);
                     <Col md={12}>
                     {/* eslint-disable-next-line */}
                         < Control.text model=".author" id="author" name="author"
-                            placeholder="First Name"
+                            placeholder="Your Name"
                             className="form-control"
                             validators={{
                                 required, minLength: minLength(3), maxLength: maxLength(15)
