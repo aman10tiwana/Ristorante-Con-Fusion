@@ -1,1 +1,1 @@
-export const baseUrl = 'https://confusion-restauraunt-react.herokuapp.com/'';
+export const baseUrl = 'https://react-confusion-ristorante.herokuapp.com/'';
